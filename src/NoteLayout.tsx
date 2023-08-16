@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Navigate, Outlet, useOutletContext, useParams } from "react-router-dom";
 import { Note } from "./App";
 
