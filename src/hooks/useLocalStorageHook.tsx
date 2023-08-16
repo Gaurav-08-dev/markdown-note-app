@@ -5,8 +5,8 @@ export const useLocalStorage = <T,>(
   initialValue: T | (() => T)
 ) => {
   {
-    const [value, setValue] = useState<T>(
-        () => {
+    const [value, setValue] = useState<T>(() => {
+        
       const jsonValue = localStorage.getItem(key);
 
       if (jsonValue === null) {

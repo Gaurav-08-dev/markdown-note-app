@@ -10,12 +10,14 @@ type SimplifiedNote = {
   title: string;
   tags: Tag[];
 };
+
 type NoteListProps = {
   availableTags: Tag[];
   notes: SimplifiedNote[];
 };
 
 const NoteList = ({ availableTags, notes }: NoteListProps) => {
+
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
 
@@ -31,6 +33,7 @@ const NoteList = ({ availableTags, notes }: NoteListProps) => {
       );
     });
   }, [title, selectedTags, notes]);
+
 
   return (
     <>

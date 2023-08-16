@@ -6,6 +6,7 @@ type NewNoteProps = {
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
 };
+
 const NewNote = ({ onSubmit, onAddTag, availableTags }: NewNoteProps) => {
   return (
     <>

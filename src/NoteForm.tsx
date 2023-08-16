@@ -20,10 +20,9 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
     onSubmit({
       title: titleRef.current!.value,
-      markDown: markDownRef.current!.value,
+      markdown: markDownRef.current!.value,
       tags: selectedTags,
     });
 
@@ -43,7 +42,6 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
           <Col>
             <Form.Group controlId="tags">
               <Form.Label>Tags</Form.Label>
-              {/* <Form.Select required /> */}
               <CreatableReactSelect
                 onCreateOption={(label) => {
                   const newTag = { id: uuidV4(), label };

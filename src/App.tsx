@@ -2,19 +2,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./NewNote";
-import { useLocalStorage } from "./useLocalStorageHook";
+import { useLocalStorage } from "./hooks/useLocalStorageHook";
 import { useMemo } from "react";
 import { v4 as uuidV4 } from "uuid";
 import NoteList from "./NoteList";
+import NoteLayout from "./NoteLayout";
+import { Note } from "./Note";
 
 export type NoteData = {
   title: string;
-  markDown: string;
+  markdown: string;
   tags: Tag[];
 };
 export type Note = {
   id: string;
-} & NoteData;
+} & NoteData
 
 export type Tag = {
   id: string;
@@ -52,7 +54,7 @@ function App() {
     setNotes((prevNotes) => {
       const newNote: RawNote = {
         id: uuidV4(),
-        markdown: data.markDown,
+        markdown: data.markdown,
         tagIds: tags.map((tag) => tag.id),
         title: data.title,
       };
@@ -64,7 +66,10 @@ function App() {
   return (
     <Container className="my-4">
       <Routes>
-        <Route path="/" element={<NoteList notes={notesWithTags} availableTags={tags} />} />
+        <Route
+          path="/"
+          element={<NoteList notes={notesWithTags} availableTags={tags} />}
+        />
         <Route
           path="/new"
           element={
@@ -75,8 +80,8 @@ function App() {
             />
           }
         />
-        <Route path="/:id">
-          <Route index element={<h1>Show</h1>} />
+        <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
+          <Route index element={<Note />} />
           <Route path="edit" element={<h1>Edit</h1>} />
         </Route>
 
